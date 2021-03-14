@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mission TO Mars</title>
+  <title>Mission To Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -20,9 +20,12 @@
     
     <div class="row" id="mars">
       <div class="col-md-12">
-        <h4 class="heading">Title</h4>
-        <p>{{info['title']}}</p>
-      </div>
+        <h2 class="heading">Latest Mars News</h2>
+        <h4>{{info['title']}}</h4>
+        <p>{{info['news_paragraph']}}</p>
+        <h2 class="heading">Featured Mars Image</h2>
+        <img src = "{{info['featured_image']}}" alt="Mars daily image" width="500" height ="400">
+      <div>
     </div>
 
   </div>

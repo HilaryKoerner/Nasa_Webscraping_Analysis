@@ -1,4 +1,3 @@
-
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
 from webdriver_manager.chrome import ChromeDriverManager
@@ -13,22 +12,26 @@ def initialize_browser():
 
 def scrape():
     browser = initialize_browser()
-
+    #Empty dictionary to hold data
     info = {}
-
+    
+    #Mars News URL: URl and browse to visit
     news_url = "https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest"
     browser.visit(news_url)
 
     html = browser.html
     soup = bs(html, "html.parser")
 
+    #MARS NEWS: Pull top story title
     top_news = soup.find("div", class_="list_text")
     title = top_news.find("div", class_="content_title")
     info['title'] = title.text.strip()
     #title = title.text.strip()
-
-    info['news_paragraph'] = top_news.find("div", class_="article_teaser_body")
-
+    
+    #MARS NEWS: Pull top story sub-title
+    sub_title = top_news.find("div", class_="article_teaser_body")
+    info['news_paragraph'] = sub_title.text.strip()
+    
     jpl_url = "https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html"
     browser.visit(jpl_url)
 
@@ -40,6 +43,7 @@ def scrape():
     info['featured_image']  = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/'+top_image
 
     mars_facts_url = 'https://space-facts.com/mars/'
+    browser.visit(mars_facts_url)
 
     tables = pd.read_html(mars_facts_url)
 
