@@ -17,6 +17,7 @@ def index():
 
 @app.route("/scrape")
 def scraper():
+    global info_temp
     #info = mongo.db.info
     #info_data = scrape_mars.scrape()
     #info.update({}, info_data, upsert=True)

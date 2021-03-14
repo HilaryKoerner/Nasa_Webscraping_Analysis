@@ -25,6 +25,7 @@ def scrape():
     top_news = soup.find("div", class_="list_text")
     title = top_news.find("div", class_="content_title")
     info['title'] = title.text.strip()
+    #title = title.text.strip()
 
     info['news_paragraph'] = top_news.find("div", class_="article_teaser_body")
 
