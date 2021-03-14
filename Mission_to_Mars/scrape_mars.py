@@ -64,8 +64,23 @@ def scrape():
     html = browser.html
     soup = bs(html, "html.parser")
 
+    images = soup.find_all('a', class_='itemLink')
 
+    image_links = []
+    for image in images:
+        image_links.append(image['href'])
+    hemispheres = set(image_links)
 
+    image_url = []
+    for hemisphere in hemispheres:
+        image_url.append('https://astrogeology.usgs.gov/'+hemisphere)
+
+    titles = soup.find_all('h3')
+
+    image_titles = []
+    for title in titles:
+        image_titles.append(title.text.strip())
+    hemisphere_titles = set(image_titles)
 
 
 
