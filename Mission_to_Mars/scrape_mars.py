@@ -2,7 +2,7 @@ from splinter import Browser
 from bs4 import BeautifulSoup as bs
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
-
+from collections import OrderedDict
 
 def initialize_browser():
     # Setup splinter
@@ -44,18 +44,18 @@ def scrape():
 
     info['featured_image']  = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/'+top_image
 
-    #MARS FACTS: PUll table of Mars facts and select first table
-    # mars_facts_url = 'https://space-facts.com/mars/'
-    # browser.visit(mars_facts_url)
+    # MARS FACTS: PUll table of Mars facts and select first table
+    mars_facts_url = 'https://space-facts.com/mars/'
+    browser.visit(mars_facts_url)
 
-    # tables = pd.read_html(mars_facts_url)
+    tables = pd.read_html(mars_facts_url)
 
-    # mars_facts = tables[0]
-    # mars_facts = mars_facts.rename(columns={0:"Data", 1:'Mars'})
-    # mars_facts = mars_facts.set_index("Data")
-    # mars_facts = mars_facts.to_html(header=False, index=False)
-    # info['mars_facts_df'] = mars_facts
-    # info['mars_facts_dict'] = mars_facts.to_dict()
+    mars_facts = tables[0]
+    mars_facts = mars_facts.rename(columns={0:"Data", 1:'Mars'})
+    mars_facts = mars_facts.set_index("Data")
+    mars_facts = mars_facts.to_html(header=True)
+    # mars_facts = mars_facts.to_html(header=True, index=False)
+    info['mars_facts'] = mars_facts
 
     #ASTROGEOLOGY URL
     astrogeology_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
@@ -69,7 +69,7 @@ def scrape():
     image_links = []
     for image in images:
         image_links.append(image['href'])
-    hemispheres = set(image_links)
+    hemispheres = list(OrderedDict.fromkeys(image_links))
     info['hemispheres'] = hemispheres
 
     image_url = []
@@ -82,7 +82,7 @@ def scrape():
     image_titles = []
     for title in titles:
         image_titles.append(title.text.strip())
-    hemisphere_titles = set(image_titles)
+    hemisphere_titles = list(OrderedDict.fromkeys(image_titles))
 
     info['hemisphere_titles'] = hemisphere_titles
 
