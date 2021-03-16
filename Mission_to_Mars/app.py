@@ -13,6 +13,7 @@ info_temp = {}
 @app.route("/")
 def index():
     #info = mongo.db.info.find_one()
+    
     return render_template("index.html", info=info_temp)
 
 @app.route("/scrape")

@@ -45,17 +45,17 @@ def scrape():
     info['featured_image']  = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/'+top_image
 
     #MARS FACTS: PUll table of Mars facts and select first table
-    mars_facts_url = 'https://space-facts.com/mars/'
-    browser.visit(mars_facts_url)
+    # mars_facts_url = 'https://space-facts.com/mars/'
+    # browser.visit(mars_facts_url)
 
-    tables = pd.read_html(mars_facts_url)
+    # tables = pd.read_html(mars_facts_url)
 
-    mars_facts = tables[0]
-    mars_facts = mars_facts.rename(columns={0:"Data", 1:'Mars'})
-    mars_facts = mars_facts.set_index("Data")
-    mars_facts = mars_facts.to_html(header=False, index=False)
-    info['mars_facts_df'] = mars_facts
-    info['mars_facts_dict'] = mars_facts.to_dict()
+    # mars_facts = tables[0]
+    # mars_facts = mars_facts.rename(columns={0:"Data", 1:'Mars'})
+    # mars_facts = mars_facts.set_index("Data")
+    # mars_facts = mars_facts.to_html(header=False, index=False)
+    # info['mars_facts_df'] = mars_facts
+    # info['mars_facts_dict'] = mars_facts.to_dict()
 
     #ASTROGEOLOGY URL
     astrogeology_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
@@ -70,10 +70,12 @@ def scrape():
     for image in images:
         image_links.append(image['href'])
     hemispheres = set(image_links)
+    info['hemispheres'] = hemispheres
 
     image_url = []
     for hemisphere in hemispheres:
         image_url.append('https://astrogeology.usgs.gov/'+hemisphere)
+    info['image_url'] = image_url
 
     titles = soup.find_all('h3')
 
@@ -82,6 +84,7 @@ def scrape():
         image_titles.append(title.text.strip())
     hemisphere_titles = set(image_titles)
 
+    info['hemisphere_titles'] = hemisphere_titles
 
 
     #quit the broswer
