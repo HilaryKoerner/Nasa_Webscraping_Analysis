@@ -73,7 +73,14 @@ def scrape():
 
     image_url = []
     for hemisphere in hemispheres:
-        image_url.append('https://astrogeology.usgs.gov/'+hemisphere)
+        pic_link = ('https://astrogeology.usgs.gov/'+hemisphere)
+        browser.visit(pic_link)
+        hemisphere_html = browser.html
+        soup = bs(hemisphere_html, 'html.parser')
+        image_pic = soup.find('div', class_="downloads")
+        final_pic = image_pic.find('a')['href']
+        image_url.append(final_pic)
+
     mars['image_url'] = image_url
 
     #hemisphere titles
