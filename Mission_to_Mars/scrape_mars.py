@@ -49,8 +49,8 @@ def scrape():
     tables = pd.read_html(mars_facts_url)
 
     mars_facts = tables[0]
-    mars_facts = mars_facts.rename(columns={0:"Data", 1:"Mars"})
-    mars_facts = mars_facts.set_index('Data')
+    mars_facts.columns['Description','Mars']
+    mars_facts = mars_facts.set_index('Description', inplace=True)
     mars_facts = mars_facts.to_html(header=True)
     mars['mars_facts'] = mars_facts
 
