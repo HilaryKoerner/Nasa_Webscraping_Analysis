@@ -1,0 +1,31 @@
+.jumbotron {
+  text-align: center;
+  background-color: grey;
+  color: red;
+}
+
+#mars_news {
+  color: deeppink;
+}
+
+#jpl_image {
+  color: orange;
+}
+
+#mars_facts {
+  box-shadow: 10px 10px 5px black;
+}
+
+#mars_hemispheres {
+  background-color: #000;
+}
+
+p {
+  font-size: 15px;
+  color: gray;
+}
+
+ul {
+  border-style: solid;
+  color: gray;
+}
