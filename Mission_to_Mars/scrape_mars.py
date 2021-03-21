@@ -61,6 +61,7 @@ def scrape():
     html = browser.html
     soup = bs(html, "html.parser")
 
+    #create an empty list to hold title and hemisphere image
     hemisphere_list = []
     category = soup.find("div", class_ = "result-list" )
     hemispheres =category.find_all("div", class_="item")
@@ -77,45 +78,6 @@ def scrape():
         hemisphere_list.append({"title": titles, "image_url": final_pic})
 
     mars['hemisphere_list'] = hemisphere_list
-
-
-
-
-
-
-
-
-    #Images
-    # images = soup.find_all('a', class_='itemlink')
-
-    # #the code below turns hemispheres into a list to reference in the follow for loop
-    # image_links = []
-    # for image in images:
-    #     image_links.append(image['href'])
-    # hemispheres = list(OrderedDict.fromkeys(image_links))
-    # mars['hemisphere'] = hemispheres
-
-    # image_url = []
-    # for hemisphere in hemispheres:
-    #     pic_link = ('https://astrogeology.usgs.gov/'+hemisphere)
-    #     browser.visit(pic_link)
-    #     hemisphere_html = browser.html
-    #     soup = bs(hemisphere_html, 'html.parser')
-    #     image_pic = soup.find('div', class_="downloads")
-    #     final_pic = image_pic.find('a')['href']
-    #     image_url.append(final_pic)
-
-    # mars['image_url'] = image_url
-
-    # #hemisphere titles
-    # titles = soup.find_all('h3')
-
-    # image_titles = []
-    # for title in titles:
-    #     image_titles.append(title.text.strip())
-    # hemisphere_titles = list(OrderedDict.fromkeys(image_titles))
-
-    # mars['hemisphere_titles'] = hemisphere_titles
 
     browser.quit()
 
