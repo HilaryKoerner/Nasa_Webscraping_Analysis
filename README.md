@@ -4,10 +4,9 @@
 This challenge incorporates jupyter notebook, webscapping, MongoDB, a flask app, and html. The challenge was to scrape four different websites, pull  components from each site, and then render and launch the compenents to an html website. 
 
 ### Launching the site locally
-To launch this site, I created an app.py file 
+To build this site, I created an app.py file 
 
 ![nasaapp](https://user-images.githubusercontent.com/74504885/122327035-d7a11e00-cef2-11eb-9916-c428b77c0360.PNG)
-
 
 To launch it locally, I ran the python file from my command prompt 
 ![command](https://user-images.githubusercontent.com/74504885/122326454-f05d0400-cef1-11eb-9744-848e24544cdc.PNG)
