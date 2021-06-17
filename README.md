@@ -7,8 +7,10 @@ This challenge incorporates jupyter notebook, webscapping, MongoDB, a flask app,
 To launch this site, I created an app.py file 
 ![nasaapp](https://user-images.githubusercontent.com/74504885/122327035-d7a11e00-cef2-11eb-9916-c428b77c0360.PNG)
 
+
 To launch it locally, I ran the python file from my command prompt 
 ![command](https://user-images.githubusercontent.com/74504885/122326454-f05d0400-cef1-11eb-9744-848e24544cdc.PNG)
+
 
 To complete this challenge, I used Jupyter Notebook (with Beautiful Soup and Splinter) to scrape the following Nasa webpages:
 News: https://mars.nasa.gov/news
